@@ -1,0 +1,39 @@
+{
+  "name": "nice-start-page",
+  "version": "1.0.0",
+  "description": "custom startpage for Jacob",
+  "main": "app.js",
+  "scripts": {
+    "start": "node app.js",
+    "server": "nodemon app.js",
+    "server-debug": "nodemon --inspect app.js",
+    "frontend-install": "npm install --prefix frontend",
+    "frontend": "npm start --prefix frontend",
+    "dev": "concurrently \"npm run server\" \"npm run frontend\"",
+    "dev-debug": "concurrently \"npm run server-debug\" \"npm run frontend\"",
+    "postbuild": "NPM_CONFIG_PRODUCTION=false npm install --prefix frontend && npm run build --prefix frontend"
+  },
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "@braintree/sanitize-url": "^6.0.0",
+    "bcryptjs": "^2.4.3",
+    "body-parser": "^1.20.0",
+    "concurrently": "^7.2.2",
+    "express": "^4.18.1",
+    "express-validator": "^6.14.2",
+    "jsonwebtoken": "^8.5.1",
+    "metadata-scraper": "^0.2.57",
+    "mongoose": "^6.3.3",
+    "netlify-cli": "^10.7.1",
+    "newsapi": "^2.4.1",
+    "normalize-url": "^4.5.1",
+    "passport": "^0.5.3",
+    "passport-jwt": "^4.0.0",
+    "react-redux": "^8.0.2",
+    "validator": "^13.7.0"
+  },
+  "devDependencies": {
+    "nodemon": "^2.0.16"
+  }
+}
