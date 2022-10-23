@@ -5,7 +5,7 @@ import {
 } from '@ant-design/icons';
 import moment from 'moment';
 
-const NewsCard = ({ article }) => {
+const NewsCard = ({ article, mobile }) => {
   const [open, setOpen] = useState(false);
 
   const showDrawer = () => {
@@ -22,7 +22,7 @@ const NewsCard = ({ article }) => {
       placement="right"
       onClose={onClose}
       open={open}
-      width={"700px"}
+      width={mobile ? "90vw" : "70vw"}
     >
       <h3 className="text-black">{article.title}</h3>
       <div className="flex flex-col gap-2 pb-5">
@@ -36,24 +36,27 @@ const NewsCard = ({ article }) => {
     </Drawer>
   )
 
-  return <Col span={8} className="pb-4">
-    <Card
-      hoverable={true}
-      cover={<img alt={`${article.title}`} src={`${article.urlToImage}`} />}
-      onClick={showDrawer}
-    >
-      <p className="pb-3" style={{ fontWeight: 700, opacity: 0.7 }}>{article.source.name}</p>
-      <p style={{ fontSize: 22, color: 'black' }}>{article.title.split("-")[0].trim()}</p>
-      <div className="flex flex-row justify-end w-100 pt-3">
-        <Button type="text" size="small" onClick={showDrawer} className="mt-2">
-          <div className="flex flex-row justify-center items-center gap-2">
-            Read More <ArrowRightOutlined />
-          </div>
-        </Button>
-      </div>
-    </Card>
-    {drawerItem}
-  </Col>
+  return (
+    <>
+      <Card
+        hoverable={true}
+        cover={<img alt={`${article.title}`} src={`${article.urlToImage}`} />}
+        onClick={showDrawer}
+      >
+        <p className="pb-3" style={{ fontWeight: 700, opacity: 0.7 }}>{article.source.name}</p>
+        <p style={{ fontSize: 22, color: 'black' }}>{article.title.split("-")[0].trim()}</p>
+        <div className="flex flex-row justify-end w-100 pt-3">
+          <Button type="text" size="small" onClick={showDrawer} className="mt-2">
+            <div className="flex flex-row justify-center items-center gap-2">
+              Read More <ArrowRightOutlined />
+            </div>
+          </Button>
+        </div>
+      </Card>
+      {drawerItem}
+    </>
+
+  )
 }
 
 export default NewsCard;

@@ -1,7 +1,8 @@
 import React from "react";
 import { useEffect } from "react";
-import { Button, Row } from "antd";
+import { Button, Row, Col } from "antd";
 import NewsCard from "./news-card";
+import { isMobile } from "../../util/window_util";
 
 const MainPage = ({ articles, status, errors, currentUser, fetchNews }) => {
   useEffect(() => {
@@ -10,10 +11,17 @@ const MainPage = ({ articles, status, errors, currentUser, fetchNews }) => {
     }
   }, [status])
 
+  const mobile = isMobile();
+  // console.log('isMobile', mobile)
+  // const device = 
+  // console.log('navigator', window.navigator)
+
   let allArticles;
   if (status === "DONE") {
     allArticles = articles.map((article, idx) =>
-      <NewsCard article={article} key={`article-${idx}`} />
+      <Col span={mobile ? 100 : 8} className="pb-4" key={`article-${idx}`}>
+        <NewsCard article={article} mobile={mobile} />
+      </Col>
     )
   } else {
     allArticles = (
